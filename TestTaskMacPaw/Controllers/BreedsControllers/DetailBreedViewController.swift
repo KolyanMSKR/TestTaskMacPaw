@@ -133,7 +133,8 @@ extension DetailBreedViewController: UITableViewDataSource {
             }
         case .linked:
             if let wikiUrl = breed.wikipediaURL {
-                let cell = tableView.dequeueReusableCell(withIdentifier: LinkedCell.cellID, for: indexPath) as! LinkedCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: LinkedCell.cellID,
+                                                         for: indexPath) as! LinkedCell
                 
                 cell.nameLabel.text = "Wikipedia:"
                 cell.linkButton.setTitle(wikiUrl, for: .normal)
@@ -155,7 +156,7 @@ extension DetailBreedViewController: UITableViewDelegate {
         let model = models[indexPath.row]
         switch model {
         case .description:
-            let height = (breed.description?.height(width: view.bounds.width * 5/7 - 28, font: .avenir(size: 16)!))! + 40
+            let height = (breed.description?.height(width: view.bounds.width*5/7 - 28, font: .avenir(size: 16)!))! + 40
             return height
         case .linked:
             return 50
