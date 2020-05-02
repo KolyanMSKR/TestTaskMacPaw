@@ -25,7 +25,7 @@ class DetailBreedViewController: UIViewController {
         let imageView = CacheImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = 12
+        imageView.layer.cornerRadius = 12 
         imageView.layer.masksToBounds = true
         
         return imageView
@@ -51,7 +51,7 @@ class DetailBreedViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    	
     // MARK: - Lifecycle's methods
     
     override func viewDidLoad() {

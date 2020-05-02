@@ -137,12 +137,12 @@ class QuizViewController: UIViewController {
     
     private func scoreIncrease() {
         totalScore += 2
-        scoreLabel.text = String(totalScore)
+        scoreLabel.text = "Total score: \(totalScore)"
     }
     
     private func scoreDecrement() {
         totalScore -= 1
-        scoreLabel.text = String(totalScore)
+        scoreLabel.text = "Total score: \(totalScore)"
     }
     
     private func generateQuestion() {
@@ -184,22 +184,22 @@ class QuizViewController: UIViewController {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            scoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            scoreLabel.bottomAnchor.constraint(equalTo: mainContainerView.topAnchor, constant: -5)
+            scoreLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            scoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            mainContainerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            mainContainerView.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: 10),
             mainContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             mainContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            mainContainerView.heightAnchor.constraint(equalToConstant: view.bounds.height * 4/7)
+            mainContainerView.heightAnchor.constraint(equalToConstant: view.bounds.height * 3/7)
         ])
         
         NSLayoutConstraint.activate([
             breedImageView.topAnchor.constraint(equalTo: mainContainerView.topAnchor, constant: 20),
             breedImageView.leadingAnchor.constraint(equalTo: mainContainerView.leadingAnchor, constant: 20),
             breedImageView.trailingAnchor.constraint(equalTo: mainContainerView.trailingAnchor, constant: -20),
-            breedImageView.heightAnchor.constraint(equalToConstant: 300)
+            breedImageView.heightAnchor.constraint(equalToConstant: view.bounds.height * 4/7 * 4/7)
         ])
         
         NSLayoutConstraint.activate([
@@ -208,7 +208,7 @@ class QuizViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
-            buttonsContainerView.topAnchor.constraint(equalTo: mainContainerView.bottomAnchor, constant: 50),
+            buttonsContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -100),
             buttonsContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             buttonsContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             buttonsContainerView.heightAnchor.constraint(equalToConstant: 50)
