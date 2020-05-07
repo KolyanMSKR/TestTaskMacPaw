@@ -153,14 +153,7 @@ extension DetailBreedViewController: UITableViewDataSource {
 extension DetailBreedViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let model = models[indexPath.row]
-        switch model {
-        case .description:
-            let height = (breed.description?.height(width: view.bounds.width*5/7 - 28, font: .avenir(size: 16)!))! + 40
-            return height
-        case .linked:
-            return 50
-        }
+        return UITableView.automaticDimension
     }
     
 }
