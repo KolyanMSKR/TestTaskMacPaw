@@ -10,8 +10,7 @@ import UIKit
 
 class PhotoCell: UICollectionViewCell {
     
-    static var cellID = "PhotoCellID"
-    private let networkService = NetworkService()
+    static var cellID = "PhotoCellID"	
     
     var imageStringURL: String? {
         didSet {
