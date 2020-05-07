@@ -12,26 +12,6 @@ class QuizViewController: UIViewController {
     
     // MARK: - properties
     
-    private let breeds = ["abys", "aege", "abob", "acur", "asho", "awir", "amau", "amis", "bali", "bamb",
-                          "beng", "birm", "bomb", "bslo", "bsho", "bure", "buri", "cspa", "ctif", "char",
-                          "chau", "chee", "csho", "crex", "cymr", "cypr", "drex", "dons", "lihu", "emau",
-                          "ebur", "esho", "hbro", "hima", "jbob", "java", "khao", "kora", "kuri", "lape",
-                          "mcoo", "mala", "manx", "munc", "nebe", "norw", "ocic", "orie", "pers", "pixi",
-                          "raga", "ragd", "rblu", "sava", "sfol", "srex", "siam", "sibe", "sing", "snow",
-                          "soma", "sphy", "tonk", "toyg", "tang", "tvan", "ycho"]
-    
-    private let answers = ["Abyssinian", "Aegean", "American Bobtail", "American Curl", "American Shorthair",
-                           "American Wirehair", "Arabian Mau", "Australian Mist", "Balinese", "Bambino", "Bengal",
-                           "Birman", "Bombay", "British Longhair", "British Shorthair", "Burmese", "Burmilla",
-                           "California Spangled", "Chantilly-Tiffany", "Chartreux", "Chausie", "Cheetoh",
-                           "Colorpoint Shorthair", "Cornish Rex", "Cymric", "Cyprus", "Devon Rex", "Donskoy",
-                           "Dragon Li", "Egyptian Mau", "European Burmese", "Exotic Shorthair", "Havana Brown",
-                           "Himalayan", "Japanese Bobtail", "Javanese", "Khao Manee", "Korat", "Kurilian", "LaPerm",
-                           "Maine Coon", "Malayan", "Manx", "Munchkin", "Nebelung", "Norwegian Forest Cat", "Ocicat",
-                           "Oriental", "Persian", "Pixie-bob", "Ragamuffin", "Ragdoll", "Russian Blue", "Savannah",
-                           "Scottish Fold", "Selkirk Rex", "Siamese", "Siberian", "Singapura", "Snowshoe", "Somali",
-                           "Sphynx", "Tonkinese", "Toyger", "Turkish Angora", "Turkish Van", "York Chocolate"]
-    
     private let networkService = NetworkService()
     private var proposedAnswers: [String] = []
     private var rightAnswer = ""
@@ -146,7 +126,7 @@ class QuizViewController: UIViewController {
     }
     
     private func generateQuestion() {
-        if let breedID = breeds.randomElement() {
+        if let breedID = QuizModel.getRandomBreed() {
             guard let url = URL(string: "https://api.thecatapi.com/v1/images/search?breed_id=\(breedID)") else {
                 return
             }
@@ -156,13 +136,11 @@ class QuizViewController: UIViewController {
             networkService.fetchJSONData(of: Breed.self, request: request) { response in
                 if let imageURL = response?.first?.url, let breedName = response?.first?.breeds?.first?.name {
                     self.breedImageView.downloadImage(from: imageURL)
-                    
                     self.rightAnswer = breedName
                     self.proposedAnswers = [breedName]
-                    if let element = self.answers.randomElement() {
+                    if let element = QuizModel.getRandomAnswer() {
                         self.proposedAnswers.append(element)
                     }
-                    
                     self.questionLabel.text = self.proposedAnswers.randomElement()
                 }
             }
